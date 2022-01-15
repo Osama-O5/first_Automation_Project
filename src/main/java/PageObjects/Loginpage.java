@@ -13,32 +13,40 @@ public class Loginpage {
     PropertiesReader propertiesReader;
     WebDriverWait wait;
 
-    public Loginpage(WebDriver driver){
-        this.driver = WebDriverSingleton.getInstance().getDriver();
-    }
+    public Loginpage(WebDriver driver) {
+        this.driver = driver;
+        wait = new WebDriverWait(this.driver, 30);
 
-    public void enterEmail(){
-        WebElement emailField = WebDriverSingleton.getInstance().getDriver().findElement(ObejRepo.emailID);
+}
+
+    public void enterEmail() {
+        propertiesReader = new PropertiesReader();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ObejRepo.emailID));
+        WebElement emailField =WebDriverSingleton.getInstance().getDriver().findElement(ObejRepo.emailID);
         emailField.sendKeys(propertiesReader.getEmail());
     }
 
-    public void enterPass(){
+    public void enterPass() {
+        propertiesReader = new PropertiesReader();
         WebElement passField = WebDriverSingleton.getInstance().getDriver().findElement(ObejRepo.passID);
         passField.sendKeys(propertiesReader.getPass());
     }
 
-    public void clickOnSubmit(){
+    public void clickOnSubmit() {
         WebElement submit = WebDriverSingleton.getInstance().getDriver().findElement(ObejRepo.submitID);
         submit.click();
     }
 
-    public void enterInvalidEmail(){
-        WebElement emailField = driver.findElement(ObejRepo.emailID);
-        emailField.sendKeys(propertiesReader.getEmail());
+    public String getcurrentHeaderText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ObejRepo.headerID));
+        WebElement header = WebDriverSingleton.getInstance().getDriver().findElement(ObejRepo.headerID);
+        return header.getText();
     }
 
-    public void waitEmail(){
-        wait = new WebDriverWait(this.driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ObejRepo.emailID));
+
+    public String expectHeaderText() {
+        String expectedResult = "MY ACCOUNT";
+
+        return expectedResult;
     }
 }

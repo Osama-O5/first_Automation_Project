@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class WebDriverSingleton {
 
     WebDriver driver ;
+    PropertiesReader propertiesReader = new PropertiesReader();
 
     private static WebDriverSingleton webDriverSingleton = null;
 
@@ -14,6 +15,7 @@ public class WebDriverSingleton {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.navigate().to(propertiesReader.getUrl());
     }
 
     public static WebDriverSingleton getInstance(){

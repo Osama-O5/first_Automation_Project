@@ -56,7 +56,7 @@ public class APIsRequests {
 
     @Test
     public static void createUser(){
-        RestAssured.baseURI = "https://reqres.in/api/user";
+        RestAssured.baseURI = propertiesReader.getAPIUrl();
         Response createUser = given().
                 relaxedHTTPSValidation()
                 .header("Content-Type" , "application/json")

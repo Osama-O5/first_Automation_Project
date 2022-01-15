@@ -3,9 +3,9 @@
 <suite name = "Regression suite">
     <test name="User Tests">
         <classes>
-            <class name="com.code95."></class>
+            <class name="com.code95.Functional.homepage"></class>
 
-            <class name="com.code95.login"></class>
+            <class name="com.code95.Functional.login"></class>
 
         </classes>
     </test>
